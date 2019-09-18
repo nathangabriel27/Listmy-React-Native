@@ -2,17 +2,10 @@ import React, { Component } from 'react';
 
 import AsyncStorage from '@react-native-community/async-storage';
 
-import { Keyboard, Alert } from 'react-native';
+import { Keyboard, Alert, KeyboardAvoidingView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import {
-  Container,
-  ContainerForm,
-  Form,
-  Input,
-  List,
-  SubmitButton,
-} from './styles';
+import { Container, Form, Input, List, SubmitButton } from './styles';
 
 import ItemList from '../../components/item';
 
@@ -97,22 +90,20 @@ export default class Main extends Component {
               />
             )}
           />
-          <ContainerForm>
-            <Form>
-              <Input
-                autoCorrect={true}
-                placeholder="Adicionar uma tarefa"
-                value={newTasks}
-                onChangeText={text => this.setState({ newTasks: text })}
-                returnKeyType="send"
-                onSubmitEditing={this.handleAddTask}
-                maxLength={25}
-              />
-              <SubmitButton onPress={() => this.handleAddTask()}>
-                <Icon name="add" size={20} color="#fff" />
-              </SubmitButton>
-            </Form>
-          </ContainerForm>
+          <Form>
+            <Input
+              autoCorrect={true}
+              placeholder="Adicionar uma tarefa"
+              value={newTasks}
+              onChangeText={text => this.setState({ newTasks: text })}
+              returnKeyType="send"
+              onSubmitEditing={this.handleAddTask}
+              maxLength={25}
+            />
+            <SubmitButton onPress={() => this.handleAddTask()}>
+              <Icon name="add" size={20} color="#fff" />
+            </SubmitButton>
+          </Form>
         </Container>
       </>
     );

@@ -1,20 +1,23 @@
+import { Platform } from 'react-native';
 import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
 
-export const Container = styled.View`
+export const Container = styled.KeyboardAvoidingView.attrs({
+  enabled: Platform.OS === 'ios',
+  behavior: 'padding',
+  keyboardVerticalOffset: 75,
+})`
   flex: 1;
   padding: 20px;
   background: #fff;
 `;
 
-export const ContainerForm = styled.View`
-  padding: 0px 0px 0px;
-  background: #fff;
-`;
-
 export const Form = styled.View`
+  padding: 0px 0px 25px;
+  background: #fff;
+  align-self: stretch;
   flex-direction: row;
-  padding-top: 20px;
+  padding-top: 13px;
   border-top-width: 1px;
   border-color: #eee;
 `;
