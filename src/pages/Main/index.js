@@ -29,7 +29,7 @@ export default class Main extends Component {
     console.log(search);
 
     if (search.length !== 0) {
-      Alert.alert('Atenção!', 'Nome da Tarefa repetido!');
+      Alert.alert('Atenção!', 'Nome da tarefa repetido!');
       console.log('nome repetido');
       return;
     }
@@ -45,7 +45,25 @@ export default class Main extends Component {
   };
 
   async handleDeleteTask(item) {
-    this.setState({ tasks: this.state.tasks.filter(t => t !== item) });
+    Alert.alert(
+      'Deletar anotação',
+      'Tem certeza que deseja deletar esta anotação?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => {
+            return;
+          },
+          style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: () =>
+            this.setState({ tasks: this.state.tasks.filter(t => t !== item) }),
+        },
+      ],
+      { cancelable: false }
+    );
   }
 
   async componentDidMount() {
