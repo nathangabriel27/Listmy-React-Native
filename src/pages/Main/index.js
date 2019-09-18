@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import AsyncStorage from '@react-native-community/async-storage';
 
-import { Keyboard } from 'react-native';
+import { Keyboard, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {
@@ -24,11 +24,22 @@ export default class Main extends Component {
 
   handleAddTask = async () => {
     const { tasks, newTasks } = this.state;
+    const search = tasks.filter(t => t === newTasks);
 
-    this.setState({
-      tasks: [...tasks, newTasks],
-      newTasks: '',
-    });
+    console.log(search);
+
+    if (search.length !== 0) {
+      Alert.alert('Atenção!', 'Nome da Tarefa repetido!');
+      console.log('nome repetido');
+      return;
+    }
+
+    if (newTasks) {
+      this.setState({
+        tasks: [...tasks, newTasks],
+        newTasks: '',
+      });
+    }
 
     Keyboard.dismiss();
   };
@@ -60,7 +71,7 @@ export default class Main extends Component {
         <Container>
           <List
             data={tasks}
-            keyExtractor={item => item}
+            keyExtractor={item => item.toString()}
             renderItem={({ item }) => (
               <ItemList
                 task={item}
