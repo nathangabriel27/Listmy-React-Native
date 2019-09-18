@@ -100,8 +100,7 @@ export default class Main extends Component {
           <ContainerForm>
             <Form>
               <Input
-                autoCorrect={false}
-                autoCapitalize="none"
+                autoCorrect={true}
                 placeholder="Adicionar uma tarefa"
                 value={newTasks}
                 onChangeText={text => this.setState({ newTasks: text })}
