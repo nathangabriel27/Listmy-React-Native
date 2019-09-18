@@ -107,6 +107,7 @@ export default class Main extends Component {
                 onChangeText={text => this.setState({ newTasks: text })}
                 returnKeyType="send"
                 onSubmitEditing={this.handleAddTask}
+                maxLength={25}
               />
               <SubmitButton onPress={() => this.handleAddTask()}>
                 <Icon name="add" size={20} color="#fff" />
